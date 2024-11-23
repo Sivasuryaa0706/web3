@@ -12,6 +12,9 @@ contract simpleStorage{
 
     //Dynamic array: no limit
     Person[] public listOfPeoples;
+
+    //Declaring mapping. (key => value)
+    mapping(string => uint256) public nameToNum;
     
     function store(uint256 _myFavNum) public {
         myFavNum = _myFavNum;
@@ -25,5 +28,6 @@ contract simpleStorage{
 
     function addPerson(string memory _name,uint256 _num) public{
         listOfPeoples.push(Person(_name,_num));
+        nameToNum[_name] = _num;
     }
 }
