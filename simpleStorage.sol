@@ -2,15 +2,28 @@
 pragma solidity ^0.8.18;
 
 contract simpleStorage{
-    uint256 public favNum = 2;
+    uint256 public myFavNum;
 
-    function store(uint256 _favNum) public {
-        favNum = _favNum;
+    //Struct
+    struct Person{
+        string name;
+        uint256 favNum;
+    }
+
+    //Dynamic array: no limit
+    Person[] public listOfPeoples;
+    
+    function store(uint256 _myFavNum) public {
+        myFavNum = _myFavNum;
     }
 
     //View: read from the blockchain but cannot modify the contract's state
     //pure: cannot read from the blockchain or modify the contract's state 
     function retrieve() public view returns(uint256){
-        return favNum;
+        return myFavNum;
+    }
+
+    function addPerson(string memory _name,uint256 _num) public{
+        listOfPeoples.push(Person(_name,_num));
     }
 }
