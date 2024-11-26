@@ -8,16 +8,16 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "funder",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "ethAmount",
+						"type": "uint256"
 					}
 				],
-				"name": "addressToAmount",
+				"name": "getConversionRate",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -26,25 +26,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "fund",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
+				"name": "getPrice",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"name": "funders",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -52,7 +39,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "minUSD",
+				"name": "getVersion",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -77,7 +64,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"2. Fund Me/FundMe.sol": "FundMe"
+			"2. Fund Me/PriceConverter.sol": "PriceConverter"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -91,14 +78,6 @@
 		"remappings": []
 	},
 	"sources": {
-		"2. Fund Me/FundMe.sol": {
-			"keccak256": "0x08e09eb5e9c53ab7fcae0e4cf3d25468a44d8a45708cf47d2f6897bb925e2246",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://c88b5cdf2e7ab9d271b3ee8ad6fc1e8c4374d751877e5fb9664336245d641e5c",
-				"dweb:/ipfs/QmVvWTMxwFZWR6yiLz6rwkhNUQ3z83dKRryq5bUaGuu8Vg"
-			]
-		},
 		"2. Fund Me/PriceConverter.sol": {
 			"keccak256": "0x15c0d51d45594b1cad9b3a1937ebfeb404cf14cb31551c63472caff5066eaf7a",
 			"license": "MIT",
