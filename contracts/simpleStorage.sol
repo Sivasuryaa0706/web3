@@ -16,7 +16,7 @@ contract simpleStorage{
     //Declaring mapping. (key => value)
     mapping(string => uint256) public nameToNum;
     
-    function store(uint256 _myFavNum) public {
+    function store(uint256 _myFavNum) public virtual{
         myFavNum = _myFavNum;
     }
 
