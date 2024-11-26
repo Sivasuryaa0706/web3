@@ -2,22 +2,9 @@
 
 pragma solidity ^0.8.18;
 
-interface AggregatorV3Interface {
-  function decimals() external view returns (uint8);
+//Importing the interface directly from github
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
-  function description() external view returns (string memory);
-
-  function version() external view returns (uint256);
-
-  function getRoundData(
-    uint80 _roundId
-  ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
-
-  function latestRoundData()
-    external
-    view
-    returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
-}
 
 contract FundMe{
     uint256 public minUSD = 5;
@@ -25,7 +12,7 @@ contract FundMe{
     function fund() public payable {
         //Allow users to send money and minimum send money
 
-        require(msg.value > 1e18, "Didn't send enough ETH"); //minimum 1e18 = 1ETH
+        require(msg.value >= 1e18, "Didn't send enough ETH"); //minimum 1e18 = 1ETH
     }
     
     function getPrice() public{
