@@ -23,5 +23,10 @@ contract FundMe{
     }
     
     
-    // function withdraw() public{}
+    function withdraw() public{
+        for(uint256 fundersInd =0 ;fundersInd<funders.length;fundersInd++){
+            address funder = funders[fundersInd];
+            addressToAmount[funder] = 0;
+        }
+    }
 }
