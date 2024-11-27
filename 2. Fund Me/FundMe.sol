@@ -28,5 +28,21 @@ contract FundMe{
             address funder = funders[fundersInd];
             addressToAmount[funder] = 0;
         }
+        funders = new address[](0);  //Reset array
+
+        //Transfering ETH from one acc. to another -> transfer / send / call (methods)
+        
+        //Transfer - throws error,has gas limit
+        //msg.sender - address, payable(msg.sender) - payable address
+        payable(msg.sender).transfer(address(this).balance); 
+
+        //Send - returns true/false, has gas limit
+        bool sendSuccess = payable(msg.sender).send(address(this).balance);
+        require(sendSuccess, "Send Falied!");
+
+        //Call - powerful, works without ABI,no gas limit. Recommended way
+        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call Failed!");
     }
+
 }
