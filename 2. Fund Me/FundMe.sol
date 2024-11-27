@@ -4,6 +4,8 @@ pragma solidity ^0.8.18;
 
 import {PriceConverter} from "./PriceConverter.sol";
 
+error notOwner();
+
 contract FundMe{
     using PriceConverter for uint256;  //Saying that uint256 variables can be accessed by priceConverter
 
@@ -45,7 +47,19 @@ contract FundMe{
     }
 
     modifier onlyOwner{
-        require(msg.sender == i_owner, "Must be Owner!");
+        // require(msg.sender == i_owner, "Must be Owner!");
+        // require can be replaced by errors. It is gas efficient
+        if(msg.sender != i_owner){
+            revert notOwner();
+        }
         _;
+    }
+
+    receive() external payable { 
+        fund();
+    }
+
+    fallback() external payable { 
+        fund();
     }
 }
