@@ -7,22 +7,25 @@ import {PriceConverter} from "./PriceConverter.sol";
 contract FundMe{
     using PriceConverter for uint256;  //Saying that uint256 variables can be accessed by priceConverter
 
-    uint256 public minUSD = 5e18;
+    //Using constant reduces gas used.
+    uint256 public constant MIN_USD = 5e18; 
     
     //To store all the transactions
     address[] public funders;
     mapping(address funder => uint256 amount) public addressToAmount;
 
-    address owner;
+    // Immutable variables are like constants. 
+    //Values of immutable variables can be set inside the constructor but cannot be modified afterwards.
+    address immutable i_owner;
     constructor(){
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     function fund() public payable {
         //Allow users to send money and minimum send money
 
         //msg.value.getConversionRate() parameter followed by function when using library
-        require(msg.value.getConversionRate() >= minUSD, "Didn't send enough ETH"); //minimum 1e18 = 1ETH
+        require(msg.value.getConversionRate() >= MIN_USD, "Didn't send enough ETH"); //minimum 1e18 = 1ETH
         funders.push(msg.sender);
         addressToAmount[msg.sender] += msg.value;
     }
@@ -42,7 +45,7 @@ contract FundMe{
     }
 
     modifier onlyOwner{
-        require(msg.sender == owner, "Must be Owner!");
+        require(msg.sender == i_owner, "Must be Owner!");
         _;
     }
 }
